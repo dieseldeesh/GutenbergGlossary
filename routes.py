@@ -51,8 +51,7 @@ def notify():
 @app.route('/logout')
 def logout():
 	session.pop('logged_in',None)
-	flash('You were logged out')
-	return redirect(url_for('notify'))
+	return redirect(url_for('home'))
 
 @app.route('/shutdown', methods=['POST'])
 def shutdown():
@@ -62,9 +61,9 @@ def shutdown():
     func()
     return 'Server shutting down...'
 
-@app.route('/log', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 @logout_required
-def log():
+def login():
 	error = None
 	if request.method == 'POST':
 		if request.form['username'] != 'admin' or request.form['password'] != 'admin':
@@ -72,7 +71,7 @@ def log():
 		else:
 			session['logged_in']=True
 			return redirect(url_for('hello'))
-	return render_template('log.html', error=error)
+	return render_template('login.html', error=error)
 
 if (__name__ == '__main__'):
 	app.run()

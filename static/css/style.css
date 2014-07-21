@@ -1,0 +1,155 @@
+@font-face {
+	font-family: 'Esqadero';
+	src: url('../font/Esqadero/OT/Esqadero.otf');
+}
+@font-face {
+	font-family: "Adine";
+	src: url('../font/Adine/Adine.ttf');
+}
+/* Styles */
+html {
+	background: url('../images/bg.jpg') no-repeat center center fixed;
+	background-size: cover;
+	font-family: 'Esqadero', Georgia, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+} h1 {
+	color: #E74C3C;
+	font-size: 48px;
+	font-weight: bold;
+	margin: 0;
+	margin-bottom: 5%;
+	padding: 0;
+} body {
+	margin: 0;
+	padding: 0;
+} header {
+	width: 100%;
+	display: block;
+} #login, #logout {
+	position: relative;
+	z-index: 10;
+	float: right;
+	margin: 1%;
+	padding: 5px 20px;
+	border-radius: 5px;
+	color: #fff;
+	text-decoration: none;
+	text-transform: lowercase;
+	text-align: center;
+	background: #2ECC71;
+}  #login:hover, #logout:hover {
+	background: #27AE60;
+	-webkit-transition: all 500ms linear .2s;
+	-moz-transition: all 500ms linear .2s;
+	-o-transition: all 500ms linear .2s;
+	transition: all 500ms linear .2s;
+} #logout {
+	background-color: #E74C3C;
+} #logout:hover {
+	background-color: #C0392B;
+} .input {
+	display: block;
+	margin: 1% auto;
+	padding: 5px 15px;
+	font-family: 'Esqadero', Helvetica, sans-serif;
+	font-size:14px;
+	border-radius: 5px;
+	-moz-box-shadow:    0 0 0 50px #fff inset;
+	-webkit-box-shadow: 0 0 0 50px #fff inset;
+	box-shadow:         0 0 0 50px #fff inset;
+	border:1px solid #E74C3C;
+	-webkit-transition: all 500ms linear .2s;
+	-moz-transition: all 500ms linear .2s;
+	-o-transition: all 500ms linear .2s;
+	transition: all 500ms linear .2s;
+} .main {
+	display: table;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+} .container {
+	display: table-cell;
+	vertical-align: middle;
+} .inner, .login {
+	margin: 0 auto;
+	border-radius: 25px;
+	padding: 2%;
+	width: 40%;
+	text-align: center;
+	background: rgba(255,255,255,.9);
+} .login {
+	width: 20%;
+} .signin {
+	color: #fff;
+	border: 1px solid #E74C3C;
+	background-color: #E74C3C;
+	border-radius: 5px;
+	padding: 5px 20px;
+	font-size: 14px;
+	-webkit-transition: all 500ms linear .2s;
+	-moz-transition: all 500ms linear .2s;
+	-o-transition: all 500ms linear .2s;
+	transition: all 500ms linear .2s;
+} .signin:hover {
+	background-color: #C0392B;
+} #query {
+	margin-right: 0;
+	padding-right: 0;
+} #submit {
+	margin-left: 0;
+	padding-left: 0;
+} .query {
+	width: 300px;
+	margin: 0;
+	padding: 5px 15px;
+	font-family: 'Esqadero', Helvetica, sans-serif;
+	font-size:14px;
+	-moz-box-shadow:    0 0 0px 1000px #fff inset;
+	-webkit-box-shadow: 0 0 0px 1000px #fff inset;
+	box-shadow:         0 0 0px 1000px #fff inset;
+	border:1px solid #E74C3C; border-right:0px;
+	border-top-left-radius: 5px 5px;
+	border-bottom-left-radius: 5px 5px;
+	-webkit-transition: all 500ms linear .2s;
+	-moz-transition: all 500ms linear .2s;
+	-o-transition: all 500ms linear .2s;
+	transition: all 500ms linear .2s;
+} .search {
+	margin: 0;
+	padding: 5px 15px;
+	font-family: 'Esqadero', Helvetica, sans-serif;
+	font-size:14px;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	color: #ffffff;
+	border: solid 1px #E74C3C;
+	background: #E74C3C;
+	border-top-right-radius: 5px 5px;
+	border-bottom-right-radius: 5px 5px;
+	-webkit-transition: all 500ms linear .2s;
+	-moz-transition: all 500ms linear .2s;
+	-o-transition: all 500ms linear .2s;
+	transition: all 500ms linear .2s;
+} .search:hover {
+	text-decoration: none;
+	background: #C0392B;
+	border:1px solid #C0392B;
+} .search::-moz-focus-inner {
+  border: 0;
+} input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+} textarea:focus, input:focus{
+	outline: 0;
+	border:1px solid rgb(249,209,205); border-right:0px;
+	-moz-box-shadow:    0 0 0px 1000px rgb(249,209,205) inset;
+	-webkit-box-shadow: 0 0 0px 1000px rgb(249,209,205) inset;
+	box-shadow:         0 0 0px 1000px rgb(249,209,205) inset;
+} .input:focus {
+	border:1px solid rgba(231,76,60,.2);
+}
+input::-webkit-input-placeholder, input:-moz-placeholder, input::-moz-placeholder, input:-ms-input-placeholder {  
+   color: rgb(249,209,205);
+}

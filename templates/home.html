@@ -1,6 +1,20 @@
 {% extends "template.html" %}
 {% block content %}
-	<h2>Home</h2>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+	<header>
+		{% if not session.logged_in %}
+			<a id="login" href="{{ url_for('login') }}">log in</a>
+		{% else %}
+			<a id="logout" href="{{ url_for('logout') }}">log out</a>
+		{% endif %}
+	</header>
+	<div class="main">
+		<div class="container">
+			<div class="inner">
+				<h1>Gutenberg Glossary</h1>
+				<form method="get" action="http://www.google.com">
+					<input type="text" class="query" name="query"><input type="submit" value="search" class="search">
+				</form>
+			</div>
+		</div>
+	</div>
 {% endblock %}
