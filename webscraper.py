@@ -1,40 +1,25 @@
 import urllib2
-import re
-
 from BeautifulSoup import BeautifulSoup
 from collections import namedtuple
 
-query = 'Tale of two cities'
-
-"all characters must be converted to text. \s --> +, rest become hex"
-"Spaces can even become text"
+"all characters must be converted to hex so that the site can read them upon search"
 def convertToSearchable(input):
     hexVersion = input.encode("hex")
-    for i in range(len(hexVersion))/2:
-         
+    return '%' + "%".join([hexVersion[start:start+2] for start in range(0, len(hexVersion), 2)])
 
-BookMeta = namedtuple("BookMeta", "title author")
+Metadata = namedtuple("Metadata", "title author path")
+data= urllib2.urlopen('file:///C:/Users/MOREPOWER/Desktop/Gutenberg Glossary/GutenbergGlossary/test.html').read()
 
-splitter = re.compile(r'\s+')
-
-splitQuery = filter(None, splitter.split(query))
-str = '+'
-ending = str.join(splitQuery)
-urlbase = 'http://www.gutenberg.org/ebooks/search/?query=' + ending
-
-soup = BeautifulSoup(urllib2.urlopen(urlbase).read())
-
-bookListing = []
-
-for bookHolder in soup.findAll('li', {'class':'boolink'}):
-    bookInfo = bookHolder.find('span', {'class':'cell content'})
-    title = bookInfo.find('span', {'class':'title'}).getText()
-    if(bookInfo.find('span', {'class':'subtitle'}) != None):
-        subtitle = bookInfo.find('span', {'class':'subtitle'}).getText()
-    bookListing.append(BookMeta(title, subtitle))
-
-
-"""
-  Get the HTML link
-  Put into the form of an onward list - print out HTML
-"""
+def getResults(query):
+	url = 'http://www.gutenberg.org/ebooks/search/?query=' + query.replace(' ','+')
+	html = data #urllib2.urlopen(url).read()
+	soup = BeautifulSoup(html)
+	bookListing = []
+	for bookHolder in soup.findAll('li', {'class':'booklink'}):
+		bookInfo = bookHolder.find('span', {'class':'cell content'})
+		title = bookInfo.find('span', {'class':'title'}).getText()
+		"FIND THAT HTML"
+		if(bookInfo.find('span', {'class':'subtitle'}) != None):
+			author = bookInfo.find('span', {'class':'subtitle'}).getText()
+		bookListing.append(Metadata(title=title, author=author, path="http://www.google.com"))
+	return bookListing
