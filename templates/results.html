@@ -10,10 +10,17 @@
 	<div class="main">
 		<div class="container">
 			<div class="inner">
-				<h1>Gutenberg Glossary</h1>
-				<form method="post" action="">
-					<input type="text" class="query" name="query"><input type="submit" value="search" class="search">
-				</form>
+				<h1>Results</h1>
+				<div id="results">
+					{% for choice in results %}
+						<a class="external" href="{{ choice.path }}">
+							<div class="result">
+								<h2>{{ choice.title }}</h2>
+								<div class="author">{{ choice.author }}</div>
+							</div>
+						</a>
+					{% endfor %}
+				</div>
 			</div>
 		</div>
 	</div>

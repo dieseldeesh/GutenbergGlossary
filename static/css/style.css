@@ -149,7 +149,36 @@ html {
 	box-shadow:         0 0 0px 1000px rgb(249,209,205) inset;
 } .input:focus {
 	border:1px solid rgba(231,76,60,.2);
-}
-input::-webkit-input-placeholder, input:-moz-placeholder, input::-moz-placeholder, input:-ms-input-placeholder {  
+} input::-webkit-input-placeholder, input:-moz-placeholder, input::-moz-placeholder, input:-ms-input-placeholder {  
    color: rgb(249,209,205);
+} #results {
+	border: 2px solid #999;
+	border-radius: 10px;
+	margin: 2% 0;
+	padding: 1% 4%;
+	max-height: 400px;
+	overflow: scroll;
+} .result {
+	padding: 25px;
+	border-bottom: 3px dashed #ccc;
+} .result h2 {
+	margin: 0;
+	padding: 0;
+	color: #222;
+	font-size: 24px;
+} .author {
+	margin: 0;
+	padding: 0;
+	color: #999;
+	font-size: 18px;
+} .external {
+	text-decoration: none;
+	color: inherit;
+} .external div h2 {
+	-webkit-transition: all 500ms linear .1s;
+	-moz-transition: all 500ms linear .1s;
+	-o-transition: all 500ms linear .1s;
+	transition: all 500ms linear .1s;
+}.external:hover div h2 {
+	color: #E74C3C;
 }
