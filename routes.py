@@ -1,5 +1,6 @@
 from flask import *
 from functools import wraps
+from webscraper import *
 
 app = Flask(__name__)
 
@@ -27,9 +28,17 @@ def logout_required(test):
 			return test(*args, **kwargs)
 	return wrap
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
+	results=[]
+	if request.method == 'POST':
+		results=getResults(request.form['query'])
+		return render_template('results.html', results=results)
 	return render_template('home.html')
+
+@app.route('/results', methods=['GET', 'POST'])
+def results():
+	return render_template('results.html')
 
 @app.route('/welcome')
 def welcome():
@@ -70,7 +79,7 @@ def login():
 			error = 'Invalid Credentials. Please try again.'
 		else:
 			session['logged_in']=True
-			return redirect(url_for('hello'))
+			return redirect(url_for('home'))
 	return render_template('login.html', error=error)
 
 if (__name__ == '__main__'):
