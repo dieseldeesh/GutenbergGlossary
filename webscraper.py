@@ -12,9 +12,10 @@ def getResults(query):
 	soup = BeautifulSoup(html)
 	bookListing = []
 	for bookHolder in soup.findAll('li', {'class':'booklink'}):
+		bookUrl = bookHolder.find('a', {'class':'link'}).get("href")
 		bookInfo = bookHolder.find('span', {'class':'cell content'})
 		title = bookInfo.find('span', {'class':'title'}).getText()
 		if(bookInfo.find('span', {'class':'subtitle'}) != None):
 			author = bookInfo.find('span', {'class':'subtitle'}).getText()
-		bookListing.append(Metadata(title=title, author=author, path="http://www.google.com"))
+		bookListing.append(Metadata(title=title, author=author, path=bookUrl))
 	return bookListing
