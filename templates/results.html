@@ -1,0 +1,27 @@
+{% extends "template.html" %}
+{% block content %}
+	<header>
+		{% if not session.logged_in %}
+			<a id="login" href="{{ url_for('login') }}">log in</a>
+		{% else %}
+			<a id="logout" href="{{ url_for('logout') }}">log out</a>
+		{% endif %}
+	</header>
+	<div class="main">
+		<div class="container">
+			<div class="inner">
+				<h1>Results</h1>
+				<div id="results">
+					{% for choice in results %}
+						<a class="external" href={{ choice.path }}>
+							<div class="result">
+								<h2>{{ choice.title }}</h2>
+								<div class="author">{{ choice.author }}</div>
+							</div>
+						</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
