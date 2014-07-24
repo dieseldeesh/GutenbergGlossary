@@ -1,21 +1,14 @@
-@font-face {
-	font-family: 'Esqadero';
-	src: url('../font/Esqadero/OT/Esqadero.otf');
-}
-@font-face {
-	font-family: "Adine";
-	src: url('../font/Adine/Adine.ttf');
-}
 /* Styles */
 html {
 	background: url('../images/bg.jpg') no-repeat center center fixed;
 	background-size: cover;
-	font-family: 'Esqadero', Georgia, Helvetica, sans-serif;
+	font-family: Garamond, Georgia, Helvetica, sans-serif;
 	margin: 0;
 	padding: 0;
 } h1 {
 	color: #E74C3C;
-	font-size: 48px;
+	font-size: 64px;
+	letter-spacing: 1px;
 	font-weight: bold;
 	margin: 0;
 	margin-bottom: 5%;
