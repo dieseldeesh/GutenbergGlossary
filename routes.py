@@ -1,12 +1,19 @@
 from flask import *
 from functools import wraps
 from webscraper import *
+from flask.ext.sqlalchemy import SQLAlchemy
+import hashlib
 
 app = Flask(__name__)
 
 app.debug = True;
 
-app.secret_key = 'jK1frnds'
+app.secret_key = "secret"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///gutenberg.db'
+
+db = SQLAlchemy(app)
+
+from models import *
 
 def login_required(test):
 	@wraps(test)
@@ -30,10 +37,11 @@ def logout_required(test):
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
+	posts = db.session.query(Annotations).all()
 	results=[]
 	if request.method == 'POST':
 		results=getResults(request.form['query'])
-		return render_template('results.html', results=results)
+		return render_template('results.html', results=results, searchQuery=request.form['query'])
 	return render_template('home.html')
 
 @app.route('/results', methods=['GET', 'POST'])
@@ -75,12 +83,34 @@ def shutdown():
 def login():
 	error = None
 	if request.method == 'POST':
-		if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-			error = 'Invalid Credentials. Please try again.'
+		submit = request.form['submit']
+		md5er = hashlib.md5()
+		md5er.update(request.form['password'])
+		hexPass = md5er.hexdigest()
+		user = Annotations.query.filter_by(username=request.form['username']).first()
+		if submit == "Register":
+			if  (not (user is None)) or request.form['username']=='username':
+				error = 'The username, ' + request.form['username'] + ', is taken.'
+			elif  len(request.form['password'])<8 or request.form['password']=='password':
+				error = 'The password you entered is not secure enough.'
+			elif  request.form['cpassword'] != request.form['password']:
+				error = 'The password you entered was not consistent.'
+			else:
+				db.session.add(Annotations(request.form['username'],hexPass))
+				db.session.commit()
+				session['logged_in']=True
+				return redirect(url_for('home'))
+			return render_template('newlogin.html', error1=None, error2=error)
 		else:
-			session['logged_in']=True
-			return redirect(url_for('home'))
-	return render_template('login.html', error=error)
+			if  user is None:
+				error = 'This username, ' + request.form['username'] + ', is not taken yet. Do you want to sign up?'
+			elif hexPass != user.password:
+				error = 'Invalid Credentials. Please try again.'
+			else:
+				session['logged_in']=True
+				return redirect(url_for('home'))
+			return render_template('newlogin.html', error1=error, error2=None)
+	return render_template('newlogin.html', error1=None, error2=None)
 
 if (__name__ == '__main__'):
 	app.run()

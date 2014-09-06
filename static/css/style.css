@@ -31,7 +31,7 @@ html {
 	text-transform: lowercase;
 	text-align: center;
 	background: #2ECC71;
-}  #login:hover, #logout:hover {
+} #login:hover, #logout:hover {
 	background: #27AE60;
 	-webkit-transition: all 500ms linear .2s;
 	-moz-transition: all 500ms linear .2s;
@@ -64,15 +64,23 @@ html {
 } .container {
 	display: table-cell;
 	vertical-align: middle;
-} .inner, .login {
+} .inner, .login, .signup {
 	margin: 0 auto;
 	border-radius: 25px;
 	padding: 2%;
 	width: 40%;
 	text-align: center;
 	background: rgba(255,255,255,.9);
-} .login {
+} .login, .signup {
+	border-radius: 25px 25px 0 0;
+	cursor: pointer;
+	overflow: hidden;
 	width: 20%;
+} .signup {
+	background: rgba(231,76,60,.9);
+	border-radius: 0 0 25px 25px;
+} .signup h1 {
+	color: #fff;
 } .signin {
 	color: #fff;
 	border: 1px solid #E74C3C;
@@ -86,6 +94,11 @@ html {
 	transition: all 500ms linear .2s;
 } .signin:hover {
 	background-color: #C0392B;
+} .signup .signin {
+	background: #fff;
+	color: #E74C3C;
+} .signup .signin:hover {
+	background: #bbb;
 } #query {
 	margin-right: 0;
 	padding-right: 0;
@@ -174,4 +187,33 @@ html {
 	transition: all 500ms linear .1s;
 }.external:hover div h2 {
 	color: #E74C3C;
+} .errorMessage {
+	margin-top: 10%;
+	border-radius: 15px;
+	text-align: center;
+} .errorColor1 {
+	background:rgba(255,255,255,.9);
+	color:#E74C3C;
+} .errorColor2 {
+	background:rgba(231,76,60,.9);
+	color:#fff;
+} .errorMessage h1 {
+	border-radius: 15px 15px 0 0;
+	font-size: 24px;
+	margin: 0;
+	padding: 0;
+} .errorColor1 h1 {
+	background:#ddd;
+	color:#E74C3C;
+} .errorColor2 h1 {
+	background:rgb(192,57,43);
+	color:#fff;
+} .errorMessage p {
+	margin:0 auto;
+	padding:3% 0;
+	text-align: left;
+	width: 80%;
 }
+
+
+

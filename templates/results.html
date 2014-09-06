@@ -10,7 +10,10 @@
 	<div class="main">
 		<div class="container">
 			<div class="inner">
-				<h1>Results</h1>
+				<h1>Search Results</h1>
+				<form method="post" action="">
+					<input type="text" class="query" name="query" value="{{ searchQuery }}"><input type="submit" value="search" class="search">
+				</form>
 				<div id="results">
 					{% for choice in results %}
 						<a class="external" href={{ choice.path }}>

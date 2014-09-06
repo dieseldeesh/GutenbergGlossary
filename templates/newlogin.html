@@ -1,0 +1,83 @@
+{% extends "template.html" %}
+{% block content %}
+	<div class="main">
+		<div class="container">
+			<div id="loginBlockDiv" class="login">
+				<h1>Login</h1>
+				<form id="loginForm" action="" method="post">
+					<input class="input" type="text" name="username" placeholder="username">
+					<input class="input" id="password" type="password" name="password" placeholder="password">
+					<input class="signin" type="button" name="formType" value="Sign In" onclick="closeAndSubmitForm('loginBlock')">
+					<input id="loginBlock" type="submit" name="submit" value="Sign In" style="display:none">
+				</form>
+				<div class="errorMessage errorColor2">
+					{% if error1 %}
+						<h1>Error</h1>
+						<p class=eEror>{{ error1 }}</p>
+					{% endif %}
+				</div>
+			</div>
+			<div id="signupBlockDiv" class="signup">
+				<h1>Sign up</h1>
+				<form id="registerForm" action="" method="post">
+					<input class="input" type="text" name="username" placeholder="username">
+					<input class="input" type="password" name="password" placeholder="password">
+					<input class="input" type="password" name="cpassword" placeholder="confirm password">
+					<input class="signin" type="button" name="formType" value="Register" onclick="closeAndSubmitForm('signupBlock')">
+					<input id="signupBlock" type="submit" name="submit" value="Register" style="display:none">
+				</form>
+				<div class="errorMessage errorColor1">
+					{% if error2 %}
+						<h1>Error</h1>
+						<p class=eEror>{{ error2 }}</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+
+		var h1= $("#loginBlockDiv").height();
+		var h2= $("#signupBlockDiv").height();
+		var submittingForm = false;
+		$("#loginBlockDiv").css("height", 55);
+		$("#signupBlockDiv").css("height", 55);
+		function closeAndSubmitForm(formID) {
+			submittingForm= true;
+			if($("#loginBlockDiv").height()>55) {
+				$("#loginBlockDiv").animate({height:55+'px'});
+				$("#loginBlockDiv").promise().done(function(){
+					document.getElementById(formID).click();
+				});
+			}
+			if($("#signupBlockDiv").height()>55) {
+				$("#signupBlockDiv").animate({height:55+'px'});
+				$("#signupBlockDiv").promise().done(function(){
+					document.getElementById(formID).click();
+				});
+			}	
+		}
+		function changeHeight1() {
+			if(!submittingForm) {
+				$("#loginBlockDiv").animate({height:h1+'px'});
+				$("#signupBlockDiv").animate({height:55+'px'});
+			}
+		}
+		function changeHeight2() {
+			if(!submittingForm) {
+				$("#loginBlockDiv").animate({height:55+'px'});
+				$("#signupBlockDiv").animate({height:h2+'px'});
+			}
+		}
+		$(document).ready(function() {
+			$('#loginBlockDiv').on('click', changeHeight1);
+			$('#signupBlockDiv').on('click', changeHeight2);
+			{% if error1 %}
+				changeHeight1();
+			{% endif %}
+			{% if error2 %}
+				changeHeight2();
+			{% endif %}
+		});	
+	</script>
+{% endblock %}

@@ -6,7 +6,7 @@
 				<h1>Login</h1>
 				<form action="" method="post">
 					<input class="input" type="text" name="username" placeholder="username" value="{{ request.form.username }}">
-					<input class="input" type="password" name="password" placeholder="password">
+					<input class="input" id="password" type="password" name="password" placeholder="password">
 					<input class="signin" type="submit" value="Sign In">
 				</form>
 				{% if error %}
